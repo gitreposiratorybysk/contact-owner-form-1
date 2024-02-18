@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+    <title>Work with Manoj Yadav</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        background: linear-gradient(
+          to bottom,
+          rgb(255, 0, 0),
+          rgb(0, 255, 0),
+          rgb(255, 255, 0)
+        );
+
+        --red: #ff5733;
+        --blue: #4885ed;
+        --black: #333333;
+        --white: #ffffff;
+        --pink: #ff69b4;
+        --yellow: #ffd700;
+        --mix: linear-gradient(
+          to right,
+          var(--red),
+          var(--blue),
+          var(--black),
+          var(--white),
+          var(--pink),
+          var(--yellow)
+        );
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(
+          to bottom,
+          rgb(255, 0, 0),
+          rgb(0, 255, 0),
+          rgb(255, 255, 0)
+        );
+      }
+      /* background: linear-gradient(to bottom, rgb(255, 0, 0), rgb(0, 255, 0), rgb(255, 255, 0)); */
+
+      .container {
+        background: linear-gradient(
+          to bottom,
+          rgb(255, 0, 0),
+          rgb(0, 255, 0),
+          rgb(255, 255, 0)
+        );
+        border-radius: 50%;
+        padding: 20%;
+      }
+      .container img {
+        border: 5px
+          linear-gradient(
+            to bottom,
+            rgb(255, 0, 0),
+            rgb(0, 255, 0),
+            rgb(255, 255, 0)
+          );
+        border-radius: 48%;
+      }
+
+      header {
+        background-color: var(--red);
+        color: var(--white);
+        padding: 20px;
+        text-align: center;
+        border-radius: 10px 10px 0 0;
+      }
+
+      h1 {
+        color: var(--pink);
+      }
+
+      .start-survey-btn {
+        background-color: var(--yellow);
+        color: var(--black);
+        border: none;
+        padding: 10px 20px;
+        font-size: 18px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      .start-survey-btn:hover {
+        background-color: linear-gradient(
+          to bottom,
+          rgb(255, 0, 0),
+          rgb(4, 0, 255),
+          rgb(0, 0, 0)
+        );
+      }
+
+      footer {
+        background-color: var(--black);
+        color: var(--white);
+        padding: 10px;
+        text-align: center;
+        border-radius: 0 0 10px 10px;
+      }
+
+      .survey-container {
+        background: linear-gradient(
+          to bottom,
+          rgb(255, 0, 0),
+          rgb(0, 255, 0),
+          rgb(255, 255, 0)
+        );
+        color: linear-gradient(
+          to bottom,
+          rgb(255, 0, 0),
+          rgb(0, 255, 0),
+          rgb(255, 255, 0)
+        );
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 20px;
+        display: none; /* Initially hidden */
+      }
+
+      .active {
+        display: block; /* Show when active */
+      }
+
+      form {
+        background-color: var(--pink);
+        color: var(--black);
+        border-radius: 10px;
+        padding: 20px;
+      }
+
+      label {
+        color: var(--yellow);
+        font-weight: bold;
+      }
+
+      input[type="text"],
+      input[type="number"],
+      input[type="tel"],
+      textarea,
+      select {
+        background-color: var(--yellow);
+        color: var(--black);
+        border: none;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 5px;
+        font-size: 16px;
+        width: 100%;
+      }
+
+      input[type="text"]:focus,
+      input[type="number"]:focus,
+      input[type="tel"]:focus,
+      textarea:focus,
+      select:focus {
+        outline: none;
+        box-shadow: 0 0 5px var(--black);
+      }
+
+      button[type="submit"] {
+        background-color: var(--black);
+        color: var(--white);
+        border: none;
+        padding: 10px 20px;
+        font-size: 18px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      button[type="submit"]:hover {
+        background-color: #333333;
+      }
+
+      #formStatus {
+        font-weight: bold;
+        color: var(--blue);
+      }
+
+      #backToTop,
+      #topToBack {
+        background-color: var(--red);
+        color: var(--white);
+        border: none;
+        border-radius: 50%;
+        padding: 10px;
+        font-size: 24px;
+        cursor: pointer;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 999;
+        display: none;
+      }
+
+      #backToTop:hover,
+      #topToBack:hover {
+        background-color: #cc0000;
+      }
+
+      #scrollTopBtn {
+        position: fixed;
+        right: 40px;
+        bottom: 40px;
+        display: none;
+        background-color: #aaff00;
+        color: #aaff00;
+        border: none;
+        border-radius: 10%;
+        font-size: 24px;
+        cursor: pointer;
+        padding: 3px;
+        outline: none;
+        transition: background-color 0.3s, transform 0.3s;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      #scrollTopBtn:hover {
+        animation: blink 1.5s infinite;
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          background-color: #e74c3c; /* Red */
+        }
+        25% {
+          background-color: #f1c40f; /* Yellow */
+        }
+        50% {
+          background-color: #2ecc71; /* Green */
+        }
+        75% {
+          background-color: #f1c40f; /* Yellow */
+        }
+      }
+
+      #scrollTopBtn.show {
+        display: block;
+      }
+
+      @media only screen and (max-width: 600px) {
+        #scrollTopBtn {
+          right: 10px;
+          bottom: 10px;
+          font-size: 20px;
+        }
+      }
+
+      .social-icons {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 10px; /* Add padding for space */
+      }
+
+      .social-icons a {
+        text-decoration: none;
+        transition: transform 0.3s ease-in-out;
+        flex-basis: calc(
+          20% - 20px
+        ); /* Set the width to 20%, considering padding */
+        margin: 10px; /* Add margin for space between icons */
+        display: inline-block;
+      }
+
+      .social-icons i {
+        font-size: 30px;
+        color: #555;
+        transition: color 0.3s ease-in-out;
+        border-radius: 50%;
+        padding: 10px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .social-icons a:hover {
+        transform: scale(1.2);
+      }
+
+      .social-icons a:hover i {
+        color: #007bff;
+      }
+
+      @keyframes colorBlink {
+        0%,
+        100% {
+          color: red;
+        }
+        25% {
+          color: blue;
+        }
+        50% {
+          color: green;
+        }
+        75% {
+          color: orange;
+        }
+      }
+
+      @media only screen and (max-width: 600px) {
+        .social-icons {
+          max-width: 300px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <p style="font-size: xx-large; color-interpolation-filters: RED">
+          <strong>🚀🪐WELLCOME 🪐🚀</strong>
+        </p>
+        <img src="mk.svg" alt="Author Image" />
+        <h1>WORK WITH MANOJ YADAV</h1>
+      </div>
+    </header>
+    <div class="container">
+      <p>
+        As a successful entrepreneur, I've had the privilege of working
+        alongside the dynamic and driven team at TEAM FIRE 64 for the past three
+        to four years. Together, we've achieved remarkable milestones, including
+        the training of over 600 individuals to empower them to earn a
+        sustainable income from the comfort of their own homes. Our dedication
+        to helping others thrive in their personal and financial endeavors has
+        been the cornerstone of our mission. If you're ready to take control of
+        your life, pursue growth opportunities, and unlock your earning
+        potential, we invite you to take the first step by filling out the form
+        provided. It's important to note that what we offer is not merely a job
+        but rather an online business venture—an avenue for individuals aged 18
+        and above to embark on a journey of entrepreneurship, innovation, and
+        financial independence. Join us as we pave the way for a brighter future
+        together.<br />
+        एक सफल उद्यमी के रूप में, मुझे गर्व के साथ कहना है कि मैं पिछले तीन से
+        चार सालों से टीम फायर 64 के उत्कृष्ट और जोशीले संगठन के साथ काम कर रहा
+        हूं। हम मिलकर अद्वितीय मील की परेशानियों को हल किया है, जिसमें 600 से
+        अधिक व्यक्तियों को प्रशिक्षित किया गया है ताकि वे अपने घर से एक सतत आय
+        कमा सकें। हमारा अपने और अन्यों की व्यक्तिगत और वित्तीय पहली सफलता में
+        मदद करने के प्रति समर्पण हमारे मिशन का मूलाधार है। अगर आप अपने जीवन में
+        निर्णय को लेने, विकास के अवसरों को पकड़ने, और अपनी कमाई की संभावनाओं को
+        खोलने के लिए तैयार हैं, तो हम आपको प्रदान किए गए फॉर्म को भरकर पहला कदम
+        उठाने के लिए आमंत्रित करते हैं। यह ध्यान देने योग्य है कि हम जो
+        प्रस्तावित करते हैं, वह केवल एक नौकरी नहीं है बल्कि बल्कि ऑनलाइन व्यवसाय
+        का एक माध्यम है—उम्र 18 वर्ष और उससे अधिक व्यक्तियों के लिए उद्यमिता,
+        नवाचार, और वित्तीय स्वतंत्रता के सफर पर निकलने के लिए। हम साथ में एक
+        उज्ज्वल भविष्य की ओर पथ प्रशस्त करते हैं।
+      </p>
+      <button class="start-survey-btn" onclick="showSurveyForm()">
+        Start Survey
+      </button>
+    </div>
+
+    <div class="container survey-container" id="surveyForm">
+      <form>
+        <h2 style="text-align: center; font-size: 24px; margin-bottom: 20px">
+          Survey Form
+        </h2>
+        <label for="hindiLanguage">Do you know Hindi Language?</label>
+        <select id="hindiLanguage" required>
+          <option value="">Select</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        <label for="watchedSession"
+          >Have you watched any Youtube Session of our Work?</label
+        >
+        <select id="watchedSession" required>
+          <option value="">Select</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        <label for="name">Name</label>
+        <input type="text" id="name" required />
+        <label for="age">What is your age?</label>
+        <input type="number" id="age" required />
+        <label for="contactNumber">Your contact number?</label>
+        <input type="tel" id="contactNumber" required />
+        <label for="cityState">Your City and State</label>
+        <input type="text" id="cityState" required />
+        <label for="reason">Why do you deserve to work directly with me?</label>
+        <textarea id="reason" rows="4" required></textarea>
+        <button type="submit">Submit</button>
+        <p id="formStatus"></p>
+      </form>
+    </div>
+
+    <footer>
+      <div class="container">
+        <p>
+          This content is not created for a singular audience or purpose, but
+          rather for a diverse array of individuals seeking knowledge,
+          entertainment, or guidance. It caters to those hungry for information,
+          whether they are students researching a topic, professionals seeking
+          advice, or curious minds exploring new ideas. It transcends boundaries
+          of age, culture, and background, offering something for everyone.
+          Whether you're a hobbyist delving into a new interest, an entrepreneur
+          seeking inspiration, or simply someone looking to pass the time with
+          engaging content, there's a place for you here. This content is a
+          melting pot of perspectives, insights, and experiences, designed to
+          inform, entertain, and inspire.
+          <br />
+          यह सामग्री किसी एक निश्चित दर्शक या उद्देश्य के लिए नहीं बनाई गई है,
+          बल्कि विभिन्न व्यक्तियों के लिए है जो ज्ञान, मनोरंजन, या मार्गदर्शन की
+          तलाश में हैं। यह उन लोगों को ध्यान में रखता है जो जानकारी के लिए भूखे
+          हैं, चाहे वह एक विषय का अध्ययन कर रहे हों, एक पेशेवर सलाह की तलाश में
+          हों, या नई विचारों का अन्वेषण कर रहे हों। यह आयु, संस्कृति, और
+          पृष्ठभूमि की सीमाओं को पार करता है, सभी के लिए कुछ प्रस्तुत करता है।
+          चाहे आप एक रुचिकर्मी नई रुचि में डूब रहे हों, एक उद्यमी प्रेरणा की
+          तलाश में हों, या बस किसी रोचक सामग्री के साथ समय बिताने की तलाश में
+          हों, यहाँ आपके लिए एक स्थान है। यह सामग्री विभिन्न दृष्टिकोणों,
+          अनुभवों, और विचारों का एक मिलनसार है, जो जानकारी, मनोरंजन, और प्रेरणा
+          प्रदान करने के लिए डिज़ाइन किया गया है।
+        </p>
+      </div>
+    </footer>
+
+    <button id="backToTop" onclick="scrollToTop()">↑</button>
+    <button id="topToBack" onclick="scrollToBottom()">↓</button>
+
+    <div class="social-icons">
+      <a href="#" class="text-dark"><i class="fab fa-facebook"></i></a>
+      <a href="#" class="text-dark"><i class="fab fa-youtube"></i></a>
+      <a href="#" class="text-dark"><i class="fab fa-instagram"></i></a>
+      <a href="#" class="text-dark"><i class="fab fa-twitter"></i></a>
+      <a href="#" class="text-dark"><i class="fab fa-linkedin"></i></a>
+      <a href="#" class="text-dark"><i class="fab fa-pinterest"></i></a>
+      <a href="#" class="text-dark"><i class="fab fa-snapchat"></i></a>
+      <a href="#" class="text-dark"><i class="fab fa-tiktok"></i></a>
+      <a href="#" class="text-dark"><i class="fab fa-whatsapp"></i></a>
+      <a href="#" class="text-dark"><i class="fab fa-tumblr"></i></a>
+      <a href="#" class="text-dark"><i class="fab fa-reddit"></i></a>
+      <a href="#" class="text-dark"><i class="fab fa-weixin"></i></a>
+      <!-- WeChat -->
+      <a href="#" class="text-dark"><i class="fab fa-telegram"></i></a>
+      <a href="#" class="text-dark"><i class="fab fa-viber"></i></a>
+      <a href="#" class="text-dark"><i class="fab fa-line"></i></a>
+      <a href="#" class="text-dark"><i class="fab fa-skype"></i></a>
+      <a href="#" class="text-dark"><i class="fab fa-discord"></i></a>
+      <a href="#" class="text-dark"><i class="fab fa-quora"></i></a>
+      <a href="#" class="text-dark"><i class="fab fa-yelp"></i></a>
+      <a href="#" class="text-dark"><i class="fab fa-medium"></i></a>
+      <a href="#" class="text-dark"><i class="fab fa-flickr"></i></a>
+      <a href="#" class="text-dark"><i class="fab fa-vine"></i></a>
+      <!-- Periscope (Acquired by Twitter and later shut down) -->
+      <!-- Google+ (Shut down in April 2019) -->
+      <!-- MySpace -->
+    </div>
+
+    <!-- Your content goes here -->
+
+    <button id="scrollTopBtn" onclick="scrollToTop()" title="Go to top">
+      🔝
+    </button>
+
+    <script>
+      window.onscroll = function () {
+        scrollFunction();
+      };
+
+      function scrollFunction() {
+        const scrollBtn = document.getElementById("scrollTopBtn");
+        if (
+          document.body.scrollTop > 20 ||
+          document.documentElement.scrollTop > 20
+        ) {
+          scrollBtn.classList.add("show");
+        } else {
+          scrollBtn.classList.remove("show");
+        }
+      }
+
+      function scrollToTop() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      }
+
+      function showSurveyForm() {
+        document.getElementById("surveyForm").classList.add("active");
+        window.scrollTo({
+          top: document.getElementById("surveyForm").offsetTop,
+          behavior: "smooth",
+        });
+      }
+
+      document
+        .getElementById("backToTop")
+        .addEventListener("click", function () {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+      document
+        .getElementById("topToBack")
+        .addEventListener("click", function () {
+          window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: "smooth",
+          });
+        });
+
+       function showSurveyForm() {
+      document.getElementById('surveyForm').classList.add('active');
+      window.scrollTo({ top: document.getElementById('surveyForm').offsetTop, behavior: 'smooth' });
+    }
+
+    document.getElementById('backToTop').addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    document.getElementById('topToBack').addEventListener('click', function() {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    });
+
+    document.getElementById('surveyForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      let formData = {};
+      formData["Hindi Language"] = document.getElementById('hindiLanguage').value;
+      formData["Youtube Session"] = document.getElementById('watchedSession').value;
+      formData["Name"] = document.getElementById('name').value;
+      formData["Age"] = document.getElementById('age').value;
+      formData["Contact Number"] = document.getElementById('contactNumber').value;
+      formData["City and State"] = document.getElementById('cityState').value;
+      formData["Reason"] = document.getElementById('reason').value;
+      
+      let whatsappNumber = '+9326278327';
+      let message = '';
+      for (const [key, value] of Object.entries(formData)) {
+        message += `${key}: ${value}\n`;
+      }
+      let whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+      window.open(whatsappLink, '_blank');
+      
+      document.getElementById('surveyForm').reset();
+      document.getElementById('formStatus').textContent = 'Form submitted successfully! We will contact you shortly.';
+    });
+    </script>
+  </body>
+</html>
